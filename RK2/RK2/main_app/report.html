@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Компьютеры
+{% endblock %}
+
+{% block content %}
+<h2>Список всех компьютеров:</h2>
+<ul>
+    {% for PC in PCs %}
+        <hr>
+        <li>
+            <div>
+                Наименование: {{PC.name}} <br>
+                Цена: {{PC.price}} <br>
+                Микропроцессор: {{PC.processor_id}}
+            </div>
+        </li>
+    {% endfor %}
+    <hr>
+</ul>
+<i>Время формирования отчёта: </i>{{date}}
+{% endblock %}

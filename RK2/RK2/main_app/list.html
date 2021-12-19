@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{entity}}
+{% endblock %}
+
+{% block content %}
+<h2>Сущность <i>{{entity}}</i></h2>
+
+{% if entity == 'Processor' %}
+<a href='/processor/create'>Добавить элемент</a>
+{% endif %}
+
+{% if entity == 'PC' %}
+<a href='/PC/create'>Добавить элемент</a>
+{% endif %}
+
+<p>Список элементов:</p>
+<ul>
+    {% for elem in objects %}
+    <hr>
+        <li>
+            {% if entity == 'Processor' %}
+                Наименование: {{elem.name}},  кэш памяти: {{elem.memory_cash}}, частота: {{elem.frequency}}<br>
+                <a href='{% url "processor_update" elem.id %}'>Изменить</a>
+                <a href='{% url "processor_delete" elem.id %}'>Удалить</a>
+            {% endif %}
+
+            {% if entity == 'PC' %}
+                Наименование: {{elem.name}}, цена: {{elem.price}} <br>
+                <a href='{% url "PC_update" elem.id %}'>Изменить</a>
+                <a href='{% url "PC_delete" elem.id %}'>Удалить</a>
+            {% endif %}
+        </li>
+    {% endfor %}
+    <hr>
+</ul>
+{% endblock %}
