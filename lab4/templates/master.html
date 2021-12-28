@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Топ IT компаний{% endblock %}
+
+{% block styles %}
+body {
+    background-color: #FFD700;
+    color: black;
+    font-family: 'Calibri';
+}
+li {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+li:hover {
+    font-weight: bold;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+{% endblock %}
+
+{% block content %}
+    <h1 align="center">Топ 3 самых прибыльных IT компаний мира в 2021 году</h1>
+<ol>
+    {% for company in it_companies %}
+        <li><a href="{% url 'detail' company.id %}">{{ company.title }}</a> </li>
+    {% empty %}
+        <li>Список пуст</li>
+    {% endfor %}
+</ol>
+{% endblock %}
